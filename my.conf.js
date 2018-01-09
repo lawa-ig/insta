@@ -10,12 +10,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'client/dist/*.js, tests/*.js, server/*.js, database/*.js', included: false}
+      { pattern: 'client/dist/*.js', included: false},
+      { pattern: 'server/*.js', included: false },
+      { pattern: 'database/*.js', included: false },
+      { pattern: 'tests/*.js', included: false }
+      // { pattern: 'client/dist/*.js, server/*.js, database/*.js, tests/*.js', included: false }
     ],
 
 
@@ -55,7 +59,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode
