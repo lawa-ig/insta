@@ -2,6 +2,11 @@
 // Generated on Mon Jan 08 2018 20:10:27 GMT-0800 (PST)
 const path = require('path');
 
+var customBrowsers = ['Chrome'];
+if (process.env.TRAVIS) {
+  customBrowsers = ['Firefox'];
+}
+
 module.exports = function(config) {
   config.set({
 
@@ -18,13 +23,12 @@ module.exports = function(config) {
       'karma-chai',
       'karma-mocha',
       'karma-sourcemap-loader',
-      'karma-webpack',
+      'karma-mocha-reporter'
     ],
 
     // list of files / patterns to load in the browser
     files: [
-      'client/dist/*.js',
-      'server/*.js',
+      'server/index.js',
       // 'database/*.js',
       'tests/*.js'
     ],
@@ -37,15 +41,15 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'client/dist/bundle.js': ['webpack', 'sourcemap']
-    },
+    // preprocessors: {
+    //   'client/dist/bundle.js': ['webpack', 'sourcemap']
+    // },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
 
     // web server port
@@ -67,36 +71,13 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: customBrowsers,
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
-    webpack: {
-      entry: './client/src/index.jsx',
-      output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'client/dist/')
-      },
-      devtool: 'inline-source-map',
-      module: {
-        loaders: [
-          {
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            test: /\.jsx?$/,
-            query: {
-              presets: ['es2015', 'react']
-            }
-          }
-        ],
-      }
-    },
-    webpackMiddleware: {
-      noInfo: true,
-    },
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity

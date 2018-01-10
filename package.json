@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server/index.js",
     "react-dev": "webpack --watch",
-    "test": "karma start my.conf.js --log-level debug --single-run",
+    "test": "karma start karma.conf.js --log-level debug --single-run",
     "heroku-postbuild": "webpack"
   },
   "dependencies": {
@@ -41,14 +41,19 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.7.2",
+    "chai": "^4.1.2",
     "eslint": "^4.15.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
-    "jasmine-core": "^2.8.0",
     "karma": "^2.0.0",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
     "karma-requirejs": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "mocha": "^4.1.0",
     "nodemon": "^1.14.9",
     "requirejs": "^2.3.5",
     "webpack": "^3.10.0"
