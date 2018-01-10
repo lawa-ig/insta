@@ -55,29 +55,6 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/../client/dist'));
 
 
-// passport provided methods to serialzie and deserialize user info
-// this means every subsequent request will not contain user credentials
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
- 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-
-passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-
 
 //routes here
 
@@ -111,14 +88,12 @@ app.get('/profile',
     console.log('here is request', req);
     res.render('profile', { user: req.user });
   });
-});
 
 // app.get('/', (req, res) => res.sendStatus(200));
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Example app listening on ${port}!`));
 
-// export default app;
 
 
 
