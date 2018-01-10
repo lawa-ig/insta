@@ -2,9 +2,11 @@
   "environments": {
     "test": {
       "env": {
-        "INHERIT_THIS_CONFIG_VAR": {
-          "NPM_CONFIG_PRODUCTION": false,
-          "NODE_ENV": "development"
+        "NODE_ENV": {
+          "required": true
+        },
+        "NPM_CONFIG_PRODUCTION": {
+          "required": true
         }
       }
     }

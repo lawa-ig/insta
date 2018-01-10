@@ -43,8 +43,7 @@ const getAllPosts = function (userId, callback) {
 }
 
 const getPostsLiked = function (userId, postsIdArray, callback) {
-	client.query('SELECT likes.post_id FROM likes INNER JOIN posts ON posts.post_id = likes.post_id AND\ 
-		likes.user_id = (?) WHERE likes.post_id IN (?)', userId, postsIdArray, function (error, results) {
+	client.query('SELECT likes.post_id FROM likes INNER JOIN posts ON posts.post_id = likes.post_id AND likes.user_id = (?) WHERE likes.post_id IN (?)', userId, postsIdArray, function (error, results) {
 		if (error) {
 			console.log('get posts liked fail')
 		} else {
