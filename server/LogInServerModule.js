@@ -96,35 +96,33 @@ app.listen(port, () => console.log(`Example app listening on ${port}!`));
 
 
 
+// /* <script>
+//   window.fbAsyncInit = function() {
+//     FB.init({
+//       appId: '{your-app-id}',
+//       cookie: true,
+//       xfbml: true,
+//       version: '{latest-api-version}'
+//     });
 
-{/* <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId: '{your-app-id}',
-      cookie: true,
-      xfbml: true,
-      version: '{latest-api-version}'
-    });
+//   FB.AppEvents.logPageView();
 
-  FB.AppEvents.logPageView();
+//   };
 
-  };
+//   (function(d, s, id){
+//      var js, fjs = d.getElementsByTagName(s)[0];
+//      if (d.getElementById(id)) {return ;}
+//      js = d.createElement(s); js.id = id;
+//      js.src = "https://connect.facebook.net/en_US/sdk.js";
+//      fjs.parentNode.insertBefore(js, fjs);
+//    }(document, 'script', 'facebook-jssdk'));
+// </script>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return ;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-app.get('/login/facebook/callback', 
-	passport.authenticate('facebook', {
-		successRedirect: '/home',
-		failureRedirect : '/'
-	}))
+// app.get('/login/facebook/callback', 
+// 	passport.authenticate('facebook', {
+// 		successRedirect: '/home',
+// 		failureRedirect : '/'
+// 	}))
 
 
-export default app;
 
