@@ -1,12 +1,11 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
-import PicModal from './modal.jsx';
+import { Grid } from 'semantic-ui-react';
 import GridRow from './GridRow.jsx';
 
 const PictureGrid = (props) => (
-  <div className="grid-container">
 
-    <Grid centered relaxed columns={3}>
+  <div className="grid-container">
+    <Grid centered columns={3}>
       {
         props.user.photos.map((photo, i, arr) => {
           if (i % 3 === 0) {
@@ -15,7 +14,6 @@ const PictureGrid = (props) => (
         })
       }
     </Grid>
-
   </div>
     
 );

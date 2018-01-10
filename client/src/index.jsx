@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './components/NavBar.jsx';
 import LogIn from './components/LogIn.jsx';
-import PictureGrid from './components/prof_pg/PictureGrid.jsx';
-import ModalModalExample from './components/prof_pg/modal.jsx';
+import UserProfile from './components/prof_pg/UserProfile.jsx';
 
 const fakeUserData = {
   'username': 'willputnam12', 
@@ -13,7 +12,7 @@ const fakeUserData = {
     'https://i.kinja-img.com/gawker-media/image/upload/s--6l4Bf9Wf--/c_fill,fl_progressive,g_north,h_264,q_80,w_470/h98k8gzwa5gou1gmchkj.jpg',
     'http://cdn.cnn.com/cnnnext/dam/assets/170301100404-mount-etna-lava-erupt-volcano-00000000-exlarge-169.jpg',
     'https://sciencetrends-techmakaillc.netdna-ssl.com/wp-content/uploads/2017/11/Mauna-Loa-700x468.jpg',
-    'https://spaceplace.nasa.gov/review/volcanoes2/volcano-1.en.jpg',
+    'http://i.dailymail.co.uk/i/pix/2015/04/02/11/27377ACF00000578-3022885-The_Colima_volcano_is_regarded_as_one_of_the_most_dangerous_in_M-a-2_1427970366256.jpg',
     'https://cdn.images.express.co.uk/img/dynamic/78/590x/Popocatepetl-878612.jpg',
     'https://www.statisticbrain.com/wp-content/uploads/2012/05/Krakatau-volcano-1.jpeg',
     'https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzAxNy83NDAvb3JpZ2luYWwva2lsYXVlYS1oYXdhaWktdm9sY2Fuby0xMDAyLTAyLmpwZw=='
@@ -44,7 +43,7 @@ class App extends React.Component {
       return (
         <div>
           <NavBar /> {/* Albert */}
-          <PictureGrid user={this.state.onPageForUser} />
+          <UserProfile user={this.state.onPageForUser} />
         </div>
       );
     } else if (currentPg === 'login_page') {

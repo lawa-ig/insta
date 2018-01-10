@@ -1,41 +1,150 @@
+/*==================*/
+/*==================*/
+/* NavBar */
+/*==================*/
+/*==================*/
+
+.logo {
+    height: 60px;
+    width: 40px;
+    margin: 0 20px 0 20px;
+  }
+  
+  .logo-name {
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 3.5rem;
+    font-family: 'Dancing Script', Arial;
+    font-weight: 700;
+  }
+  
+  .logo-bar {
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 3.5rem;
+  }
+
+  .navbar.ui.secondary.menu {
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2% 0;
+    width: 80%;
+  }
+
+  .navbar-container.ui.container {
+      width: 80%;
+      padding: 0 0 8% 0;
+      background-color: white;
+  }
+
+  .navbar-container {
+      padding: 0 0 8% 0;
+      z-index: 1;
+      background: #fff;
+  }
+
+  .navbar {
+    width: 82%;
+    object-fit: cover;
+    position: fixed;
+  }
+
+/*==================*/
+/*==================*/
 /* Profile Page View */
+/*==================*/
+/*==================*/
 .grid-container {
   margin: 0 auto;
-  width: 70%;
+  width: 75%;
 }
 
 img {
   object-fit: cover;
-  width: 300px;
-  height: 300px;
+  width: 23vw;
+  height: 23vw;
+  display: block;
 }
 
 .modal-img {
-  width: 600px;
-  height: 600px;
+  object-fit: cover;
+  width: 50vw;
+  height: 50vw;
+  display: block;
 }
 
-.logo {
-  height: 60px;
-  width: 40px;
-  margin: 0 20px 0 20px;
+.ui.large.modal {
+    left: 50%;
+    top: 50%;
+    width: 75%;
+    overflow: hidden;
 }
 
-.logo-name {
-  margin-top: 20px;
-  margin-right: 20px;
-  font-size: 50px;
-  font-family: 'Dancing Script', Arial;
-  font-weight: 700;
+.ui.modal>.content {
+    padding: 0;
 }
 
-.logo-bar {
-  margin-top: 20px;
-  margin-right: 20px;
-  font-size: 50px;
+.modal-description.field {
+    position: relative;
+    min-width: 200px;
 }
 
-.navbar {
-  width: 82%;
-  padding: 20px 0 20px 14%;
+.ui.container {
+    min-height: 10%;
+    padding-top: 20px;
+    position: relative;
+}
+
+.ui.header {
+    padding: 5.5px 0;
+}
+
+.like-comment-contain {
+    bottom: 0;
+}
+
+.comment {
+    position: relative;
+    display: table;
+}
+
+.modal-author, .modal-comment {
+    display: table-cell;
+    vertical-align: middle;
+    float: left;
+}
+
+.modal-author {
+    padding: 0 4px;
+    font-weight: bold;
+}
+
+.ui.container.modal-footer-contain {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+:focus {
+    outline: 0;
+}
+
+.ui.container.modal-footer-contain>.ui.small.header {
+    padding: 0;
+    margin: 3px 0;
+}
+
+.ui.container.modal-footer-contain>.ui.mini.image {
+    padding: 0;
+    margin-left: -8px;
+}
+
+.post-date {
+    color: rgb(110, 110, 110);
+}
+
+.ui.input.focus input {
+    border: none;
+    padding: 0;
 }
