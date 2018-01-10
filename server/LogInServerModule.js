@@ -2,22 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const config = require('./config.js');
 
 // passport's sole purpose is to authenticate requests
 const passport = require('passport');
 var expressSession = require('express-session');
 const FacebookTokenStrategy = require('passport-facebook-token');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
-const FACEBOOK_APP_ID = '156902491617294';
-const FACEBOOK_APP_SECRET = '4a58ce8ff173a7a10797a973c06586a6';
+
 
 
 
 
 // configure Facebook Strategy for use by passport
 passport.use(new FacebookTokenStrategy({
-  clientID: FACEBOOK_APP_ID,
-  clientSecret: FACEBOOK_APP_SECRET,
+  clientID: const.FACEBOOK_APP_ID,
+  clientSecret: const.FACEBOOK_APP_SECRET,
   callbackURL: "http://localhost:3000/login/facebook/callback"
 },
   function (accessToken, refreshToken, profile, done) {
