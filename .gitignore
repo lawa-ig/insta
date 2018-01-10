@@ -21,8 +21,10 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 client/src/semantic
+client/dist/bundle.js
 semantic.json
 package-lock.json
+server/config.js
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:

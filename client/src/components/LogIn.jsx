@@ -11,7 +11,12 @@ class LogIn extends React.Component {
 
   handleClick(e) {
   	// perform a get request to server
-  	axios.get('/login/facebook')
+    axios.post('/login/facebook', {
+      params: {
+        email: this.email.value,
+        password: this.password.value
+      }
+    })
   	  .then(function(response) {
   	  	console.log('here is the server response', response);
   	  })
@@ -26,8 +31,8 @@ class LogIn extends React.Component {
     return (
       <div>
       	<h1>Log in with Facebook</h1>
-        <input></input>
-        <input></input>
+        <input name='email' ref={(input)=> {this.email = input}}placeholder='email...'></input>
+        <input name='password' ref={(input) => {this.password=input}} placeholder='password...'></input>
         <button onClick={(e)=> this.handleClick(e)}>Login</button>
       </div>
      );
