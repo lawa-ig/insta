@@ -38567,9 +38567,91 @@ module.exports = camelize;
 
 /***/ }),
 /* 396 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: /Users/williamputnam/lawa-ig/client/src/components/LogIn.jsx: Unexpected token (34:1)\n\u001b[0m \u001b[90m 32 | \u001b[39m      \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 33 | \u001b[39m      \t\u001b[33m<\u001b[39m\u001b[33mh1\u001b[39m\u001b[33m>\u001b[39m\u001b[33mLog\u001b[39m \u001b[36min\u001b[39m \u001b[36mwith\u001b[39m \u001b[33mFacebook\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mh1\u001b[39m\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m 36 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33minput\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33minput\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 37 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33minput\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33minput\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Parser.pp$5.raise (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:4454:13)\n    at Parser.pp.unexpected (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:1761:8)\n    at Parser.pp$9.jsxParseIdentifier (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7029:10)\n    at Parser.pp$9.jsxParseNamespacedName (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7040:19)\n    at Parser.pp$9.jsxParseElementName (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7055:19)\n    at Parser.pp$9.jsxParseOpeningElementAt (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7145:20)\n    at Parser.pp$9.jsxParseElementAt (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7169:29)\n    at Parser.pp$9.jsxParseElementAt (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7182:30)\n    at Parser.pp$9.jsxParseElement (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7224:15)\n    at Parser.parseExprAtom (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7236:21)\n    at Parser.pp$3.parseExprSubscripts (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3494:19)\n    at Parser.pp$3.parseMaybeUnary (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3474:19)\n    at Parser.pp$3.parseExprOps (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3404:19)\n    at Parser.pp$3.parseMaybeConditional (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3381:19)\n    at Parser.pp$3.parseMaybeAssign (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3344:19)\n    at Parser.parseMaybeAssign (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:6433:24)\n    at Parser.pp$3.parseParenAndDistinguishExpression (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3828:26)\n    at Parser.pp$3.parseExprAtom (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3709:19)\n    at Parser.parseExprAtom (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:7238:22)\n    at Parser.pp$3.parseExprSubscripts (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3494:19)\n    at Parser.pp$3.parseMaybeUnary (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3474:19)\n    at Parser.pp$3.parseExprOps (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3404:19)\n    at Parser.pp$3.parseMaybeConditional (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3381:19)\n    at Parser.pp$3.parseMaybeAssign (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3344:19)\n    at Parser.parseMaybeAssign (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:6474:20)\n    at Parser.pp$3.parseExpression (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:3306:19)\n    at Parser.pp$1.parseReturnStatement (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:2078:26)\n    at Parser.pp$1.parseStatement (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:1848:19)\n    at Parser.parseStatement (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:5910:22)\n    at Parser.pp$1.parseBlockBody (/Users/williamputnam/lawa-ig/node_modules/babylon/lib/index.js:2268:21)");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(397);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LogIn = function (_React$Component) {
+  _inherits(LogIn, _React$Component);
+
+  function LogIn(props) {
+    _classCallCheck(this, LogIn);
+
+    return _possibleConstructorReturn(this, (LogIn.__proto__ || Object.getPrototypeOf(LogIn)).call(this, props));
+  }
+
+  _createClass(LogIn, [{
+    key: 'handleClick',
+    value: function handleClick(e) {
+      // perform a get request to server
+      _axios2.default.post('/login/facebook', {
+        params: {
+          email: this.email.value,
+          password: this.password.value
+        }
+      }).then(function (response) {
+        console.log('here is the server response', response);
+      }).catch(function (error) {
+        console.log('there was an error', error);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Log in with Facebook'
+        ),
+        _react2.default.createElement('input', { name: 'email', ref: function ref(input) {
+            _this2.email = input;
+          }, placeholder: 'email...' }),
+        _react2.default.createElement('input', { name: 'password', ref: function ref(input) {
+            _this2.password = input;
+          }, placeholder: 'password...' }),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this2.handleClick(e);
+            } },
+          'Login'
+        )
+      );
+    }
+  }]);
+
+  return LogIn;
+}(_react2.default.Component);
+
+exports.default = LogIn;
 
 /***/ }),
 /* 397 */
