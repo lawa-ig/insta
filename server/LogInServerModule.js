@@ -16,8 +16,8 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // configure Facebook Strategy for use by passport
 passport.use(new FacebookTokenStrategy({
-  clientID: const.FACEBOOK_APP_ID,
-  clientSecret: const.FACEBOOK_APP_SECRET,
+  clientID: config.FACEBOOK_APP_ID,
+  clientSecret: config.FACEBOOK_APP_SECRET,
   callbackURL: "http://localhost:3000/login/facebook/callback"
 },
   function (accessToken, refreshToken, profile, done) {
