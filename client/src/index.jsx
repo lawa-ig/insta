@@ -13,7 +13,7 @@ class App extends React.Component {
       loggedInUser: '', //should be an object with data for logged in user
       onPageForUser: fakeProfileTableData, //should be an object with user data
       //****************************************************************************/
-      currentPg: 'user_profile' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
+      currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
       //****************************************************************************/
     };
   }
