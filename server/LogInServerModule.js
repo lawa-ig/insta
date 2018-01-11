@@ -2,8 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const config = require('./config.js');
+// const config = require('./config.js');
 
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: ''
+// });
 // passport's sole purpose is to authenticate requests
 const passport = require('passport');
 var expressSession = require('express-session');
@@ -18,7 +25,7 @@ var users = [
   {
     "id": "10159843655865710",
     "username": "Will Putnam",
-    "token": "DeSag3sEgaEGaYRNKlQp05@diorw"
+    "token": null
   },
   {
     "id": "10155209497660814",
@@ -33,7 +40,12 @@ var users = [
 ];
 function findUser(id) {
   // db.query('SELECT * FROM users WHERE facebook_id = ?', id, function(err, user) {
-    
+  //   if (err) {
+  //     return done(err);
+  //   }
+  //   if (!user) {
+
+  //   }
   // });
   for (var i = 0; i < users.length; i++) {
     if (id === users[i].id) {
@@ -46,10 +58,10 @@ function findUser(id) {
 
 // configure Facebook Strategy for use by passport
 passport.use(new FacebookStrategy({
-  // clientID: process.env.FB_ID,
-  clientID: config.FACEBOOK_APP_ID,
-  // clientSecret: process.env.FB_SECRET,
-  clientSecret: config.FACEBOOK_APP_SECRET,
+  clientID: process.env.FB_ID,
+  // clientID: config.FACEBOOK_APP_ID,
+  clientSecret: process.env.FB_SECRET,
+  // clientSecret: config.FACEBOOK_APP_SECRET,
   callbackURL: "http://localhost:3000/login/facebook/callback",
   profileFields: ['id', 'displayName', 'link', 'photos', 'emails'],
   enableProof: true
@@ -84,12 +96,12 @@ passport.use(new FacebookStrategy({
 // this means every subsequent request will not contain user credentials
 passport.serializeUser(function (user, done) {
   console.log('getting to serialize user')
-  done(null, users[0].id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function (user, done) {
     console.log('getting to deserialize user')
-    done(null, users[0]);
+    done(null, user);
 });
 
 // setting up express server
