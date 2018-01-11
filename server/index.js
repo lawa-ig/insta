@@ -15,7 +15,12 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.use('/', router);
 
+<<<<<<< HEAD
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`LawaGram listening on ${port}!`));
 
 module.exports = app;
+=======
+// let port = process.env.PORT || 3000;
+// app.listen(port, () => console.log(`Example app listening on ${port}!`));
+>>>>>>> working with hardcoded user data will now query database
