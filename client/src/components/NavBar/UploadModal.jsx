@@ -10,7 +10,7 @@ class UploadModal extends React.Component {
       submitFlag: 'not submitted',
       uploadedFile: null,
       caption: null
-    }
+    };
     this.insertForm = this.insertForm.bind(this);
   }
 
@@ -18,14 +18,14 @@ class UploadModal extends React.Component {
     if (rejectedFiles.length) {
       this.setState({
         submitFlag: 'invalid file'
-      })
+      });
     } else {
       var image = new FormData();
       image.append('image', acceptedFiles[0]);
       this.setState({
         submitFlag: 'not submitted',
         uploadedFile: image
-      })
+      });
     }
   }
 
@@ -48,13 +48,13 @@ class UploadModal extends React.Component {
   onOpen() {
     this.setState({
       submitFlag: 'not submitted'
-    })
+    });
   }
 
   onCaptionChange(event) {
     this.setState({
       caption: event.target.value
-    })
+    });
   }
 
   render() {
@@ -84,7 +84,7 @@ class UploadModal extends React.Component {
           content="You lavagrammed it up!"
         />
         <Button>Submit</Button>
-      </Form>)
+      </Form>);
     } else if (submitFlag === 'submitted') {
       return (<Form success>
         <Form.Input required placeholder='insert caption here' onChange={this.onCaptionChange.bind(this)} />
@@ -94,7 +94,7 @@ class UploadModal extends React.Component {
           content="You lavagrammed it up!"
         />
         <Button>Submit</Button>
-      </Form>)
+      </Form>);
     } else if (submitFlag === 'invalid file') {
       return (<Form onSubmit={this.handleSubmit.bind(this)} error>
         <Form.Input required placeholder='insert caption here' onChange={this.onCaptionChange.bind(this)} />
@@ -104,7 +104,7 @@ class UploadModal extends React.Component {
           content="Uhoh! We don't accept that file type or the file is too big. Please try again with a .jpg or .png under 5MB."
         />
         <Button>Submit</Button>
-      </Form>)
+      </Form>);
     } else {
       return (<Form onSubmit={this.handleSubmit.bind(this)} error>
         <Form.Input required placeholder='insert caption here' onChange={this.onCaptionChange.bind(this)} />
@@ -114,7 +114,7 @@ class UploadModal extends React.Component {
           content="Uhoh! Something went wrong."
         />
         <Button>Submit</Button>
-      </Form>)
+      </Form>);
     }
   }
 }

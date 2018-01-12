@@ -1,6 +1,6 @@
 var controller = require('./controller');
 var router = require('express').Router();
-const multer = require('multer')
+const multer = require('multer');
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 52428800 },

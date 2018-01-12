@@ -1,12 +1,15 @@
 const app = require('./index.js');
 const db = require('../database/index.js');
 const AWS = require('aws-sdk');
+const moment = require('moment');
+// const config = require('./config.js');
 
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'key only available in staging or prod',
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'key only available in staging or prod',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID || config.AWS_ACCESS_KEY_ID || '',
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || config.AWS_SECRET_ACCESS_KEY || '',
   region: 'us-west-1'
 });
+
 
 const s3 = new AWS.S3();
 
@@ -39,17 +42,17 @@ module.exports = {
         let user = results.rows;
         if (user.length === 0) {
           let newUser = {
-            "id": res.body.id,
-            "displayName": res.body.displayName,
-            "photo": res.body.photos[0].value
-          }
+            'id': res.body.id,
+            'displayName': res.body.displayName,
+            'photo': res.body.photos[0].value
+          };
           db.insertNewFbUser(newUser)
             .then(res.sendStatus(201))
             .catch((err) => {
               console.log('insert new fb user had an error', err);
-            })
+            });
         }
-      })
+      });
 
   },
   usersFollowers: function(req, res) {
@@ -81,20 +84,23 @@ module.exports = {
   },
 
   insertPost: function(req, res) {
+    let timestamp = moment().format();
+    let fileName = `images/${ userId }-${ timestamp.toString().split(' ').join('+') }${ req.file.originalname.slice(-4) }`;
     s3.putObject({
       Bucket: 'lawa-ig',
-      Key: 'images/' + req.file.originalname,
+      Key: fileName,
       Body: req.file.buffer,
       ACL: 'public-read', // your permisions  
     }, (err, result) => {
-      console.log(result);
+      if (result) {
+        db.insertPost(req.body.caption, 1, fileName, timestamp) //req.body.userId
+          .then(res.sendStatus(201))
+          .catch(err => {
+            console.log('insertPost had an error');
+          });
+      }
     });
-    db.insertPost(req.body.caption, req.file)
-      .then(res.sendStatus(201))
-      .catch(err => {
-        console.log('insertPost had an error');
-      });
-    console.log(req);
+
   },
   //for autocomplete search bar
   allUserNames: function(req, res) {
