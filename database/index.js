@@ -98,10 +98,17 @@ const checkFollow = function(followerId, followedId) {
     [followedId, followerId]);
 };
 
+<<<<<<< HEAD
 const addComment = function(userId, postId, text) {
   return pool.query('INSERT INTO comments (user_id, post_id, text, created_at) VALUES ($1, $2, $3, $4)',
     [userId, postId, text, moment().format()]);
 };
+
+const insertPost = function(post) {
+	return pool.query('INSERT INTO posts(img, like_count, user_id, caption, created_at) \
+	VALUES ($1, $2, $3, $4, $5)',
+	[post.img, 0, post.user_id, post.caption, moment().format()]);
+}
 
 const rmComment = function(userId, postId) {
   return pool.query('',
@@ -113,6 +120,11 @@ const getLikesOnPost = function (postId) {
     FROM users INNER JOIN likes \
     ON likes.post_id = $1 AND likes.user_id = users.user_id',
     [postId]);
+}
+const getAllCommentFromPost = function(postId) {
+	return pool.query('SELECT users.name, comments.text FROM comments INNER JOIN users ON comments.post_id = $1\
+	 AND comments.user_id = users.user_id',
+		[postId]);
 };
 
 module.exports = {

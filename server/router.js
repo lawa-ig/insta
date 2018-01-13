@@ -16,6 +16,7 @@ router.post('/profile', controller.currentUserProfile); //gets a neat object wil
 router.post('/post', upload.single('image'), controller.insertPost);
 router.post('/like', controller.changeLike);
 router.post('/comment', controller.changeComment);
+router.post('/comments', controller.getComments);
 router.post('/follow', controller.changeFollow);
 
 module.exports = router;
