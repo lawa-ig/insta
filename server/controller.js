@@ -13,14 +13,6 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-let headers = {
-  'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, OPTIONS',
-  'access-control-allow-headers': 'content-type, accept',
-  'access-control-max-age': 10, 
-  'Content-Type': 'application/json'
-};
-
 module.exports = {
 
   respondOptions: function(req, res) {
