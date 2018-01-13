@@ -174,7 +174,7 @@ app.get('/login/facebook/callback',
         // Successful authentication, redirect home. 
         console.log('here is user', res.req.user);
         // callback here with user info
-        res.redirect('/');
+        res.redirect('/profile');
     });
 
 

@@ -56,6 +56,24 @@ module.exports = {
       });
   },
  
+  renderFeed: function(req, res) {
+    console.log('here is req', req.body);
+    db.getAllPosts(req.body.userId) //CURRENTLY HARD CODED USER ID, change to req.body
+      .then((results) => {
+        let posts = results.rows;
+        db.getPostsLiked(1)
+          .then((likeResult) => {
+            let likedPosts = likeResult.rows.map(result => { return result.post_id; });
+            posts.forEach(post => {
+              likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
+            });
+            res.json(posts);
+          });
+      })
+      .catch((err) => {
+        console.log('feed had an error', err);
+      });
+  },
   feed: function(req, res) {
     console.log('request', req.body.email);
     db.checkForEmail(req.body.email)

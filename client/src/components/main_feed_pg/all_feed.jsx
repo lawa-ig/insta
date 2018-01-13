@@ -12,9 +12,10 @@ class AllFeeds extends React.Component {
 		}
 	}
 
-	// componentDidMount() {
-	// 	this.updateFeed(this.props.user.user_id);
-	// }
+	componentDidMount() {
+		console.log('data', this.props.data.user_id);
+		this.updateFeed(this.props.data.user_id);
+	}
 
 	updateFeed(userId) {
 		axios.post('/feed', {userId})
