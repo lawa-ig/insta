@@ -58,6 +58,10 @@ const insertNewFbUser = function (newUser) {
   return pool.query('INSERT INTO users (fb_id, fb_name, prof_pic) VALUES ($1, $2, $3)', [newUser.id, newUser.displayName, newUser.photo]);
 };
 
+const checkForEmail = function (email) {
+  return pool.query('SELECT users.user_id FROM users WHERE users.email = $1', [email]);
+};
+
 const getUserProfile = function (userId) {
   return pool.query('SELECT users.user_id, users.name, users.prof_pic, users.description FROM users \
     WHERE users.user_id = $1',
@@ -145,6 +149,7 @@ module.exports = {
   addFollow,
   rmFollow,
   addComment,
+  checkForEmail,
   rmComment,
   checkForUser,
   insertNewFbUser,

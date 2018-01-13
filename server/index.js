@@ -148,10 +148,10 @@ app.options('/*', function (req, res, next) {
 app.use('/', router);
 
 
-app.post('/logon', function (req, res) {
-    console.log('request', req)
-    res.json(req.body.params);
-});
+// app.post('/logon', function (req, res) {
+//     console.log('request', req.body.email)
+//     res.json(req.body.email);
+// });
 app.get('/login/facebook',
 
     // will keep this in case we need to track request params later
@@ -161,7 +161,7 @@ app.get('/login/facebook',
     // });
     passport.authenticate('facebook', { scope: 'email' }), function (req, res) {
         console.log('connected');
-        console.log('request', req);
+        console.log('request', req.body);
         // Successful authentication, redirect home.
         res.send('Logged in with Facebook!');
     });

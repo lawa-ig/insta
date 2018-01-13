@@ -55,10 +55,15 @@ module.exports = {
         console.log('getUsersFollowers had an error', err);
       });
   },
-
+ 
   feed: function(req, res) {
-    db.getAllPosts(3) //CURRENTLY HARD CODED USER ID, change to req.body
+    console.log('request', req.body.email);
+    db.checkForEmail(req.body.email)
+    .then((results) => {
+      console.log('results', results.rows);
+    db.getAllPosts(results.rows[0].user_id) //CURRENTLY HARD CODED USER ID, change to req.body
       .then((results) => {
+        console.log('more results', results)
         let posts = results.rows;
         db.getPostsLiked(1)
           .then((likeResult) => {
@@ -69,6 +74,7 @@ module.exports = {
             res.json(posts);
           });
       })
+    })
       .catch((err) => {
         console.log('feed had an error', err);
       });

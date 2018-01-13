@@ -7,20 +7,13 @@ import AllFeeds from './components/main_feed_pg/all_feed.jsx';
 import fakeProfileTableData from '../../database/fakeProfileTableData';
 import axios from 'axios';
 
-const larry = {
-  user_id: 2,
-  name: 'Larry Chang',
-  description: 'meow',
-  profile_pic: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Avatar_cat.png'
-}
-
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       loggedIn: false, 
       allUsernames: [], //for dynamic search
-      loggedInUser: larry, //waiting for login profile name
+      loggedInUser: fakeProfileTableData[0], //waiting for login profile name
       onPageForUser: null, //is replaced by a real user on render
       //****************************************************************************/
       currentPg: 'user_profile' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
@@ -123,9 +116,13 @@ class App extends React.Component {
       return (
         <div>
           <NavBar allUsers={this.state.allUsernames} 
+<<<<<<< HEAD
             allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)}
             loggedInUserId={this.state.loggedInUser.user_id} 
+=======
+            changeUser={e => this.changeUser(e)} 
+>>>>>>> log in button now queries for email in database and returns expected results
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
@@ -148,12 +145,15 @@ class App extends React.Component {
         <div>
           <NavBar allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
+<<<<<<< HEAD
             loggedInUserId={this.state.loggedInUser.user_id}
+=======
+>>>>>>> log in button now queries for email in database and returns expected results
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
           /> {/* Albert */}
-          <AllFeeds user={this.state.loggedInUser} data={this.state.onPageForUser} /> {/*Larry*/}
+          <AllFeeds data={this.state.onPageForUser} /> {/*Larry*/}
         </div>
       );
     }
@@ -169,5 +169,11 @@ class App extends React.Component {
     );
   }
 }
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> log in button now queries for email in database and returns expected results
 
 export default App;
+ReactDOM.render(<App/>, document.getElementById('app'));
