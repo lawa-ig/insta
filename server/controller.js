@@ -79,7 +79,7 @@ module.exports = {
         console.log('feed had an error', err);
       });
   },
-
+ 
   insertPost: function(req, res) {
     let timestamp = moment().format();
     let fileName = `images/${ req.body.userId }-${ timestamp.toString().split(' ').join('+') }${ req.file.originalname.slice(-4) }`;
@@ -119,7 +119,16 @@ module.exports = {
         res.json(profileNames);
       });
   }, 
-
+  switchUser: function(req, res) {
+    console.log('req in controller', req.body.email);
+    db.checkForEmail(req.body.email)
+      .then(result => {
+        res.json(result.rows[0].user_id);
+      })
+      .catch(error => {
+        console.log('error switching users good sir', error);
+      })
+  },
   //for profile page view
   currentUserProfile: function(req, res) {
     

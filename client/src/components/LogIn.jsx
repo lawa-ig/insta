@@ -9,33 +9,10 @@ import { Button, Form, Grid, Header, Image, Icon, Message, Segment } from 'seman
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
+
   }
 
-  logOut(e) {
-    axios.get('/logout')
-      .then(function(response) {
-        console.log('logged out');
-      })
-      .catch(function(error) {
-        console.log('error logging out', error);
-      })
-  }
 
-  handleClick(e) {
-    // perform a get request to server
-    axios.get('/logon', {
-      params: {
-        email: e.value
-      }
-    })
-      .then(function (response) {
-        console.log('here is the server response', response);
-      })
-      .catch(function (error) {
-        console.log('there was an error', error);
-      });
-    };
 
 
   render() {

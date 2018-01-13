@@ -16,9 +16,10 @@ class App extends React.Component {
       loggedInUser: fakeProfileTableData[0], //waiting for login profile name
       onPageForUser: null, //is replaced by a real user on render
       //****************************************************************************/
-      currentPg: 'user_profile' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
+      currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
       //****************************************************************************/
     };
+    this.loginUser = this.loginUser.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
-    this.mountUser(userId, 'change');
+    this.mountUser(this.state.userId, 'change');
   }
 
   loginUser(userId) {
@@ -71,7 +72,7 @@ class App extends React.Component {
     if (changeOrLogin === 'login') {
       fetch('/profile', postConfig)
         .then(data => data.json())
-        .then(userDataObj => this.setState({loggedInUser: userDataObj}));
+        .then(userDataObj => this.setState({loggedInUser: userDataObj, onPageForUser: userDataObj}));
     } else {
       fetch('/profile', postConfig)
         .then(data => data.json())
@@ -98,7 +99,19 @@ class App extends React.Component {
       .catch(function (error) {
         console.log('there was an error', error);
       });
-    this.setState({currentPg: 'feed'});
+
+    axios.post('/id', {
+      email: e.value
+    })
+    .then(response => {
+      console.log('here is the id', response.data);
+      console.log('this', this);
+      this.loginUser(response.data);
+    })
+    .catch(function(error) {
+      console.log('there was an error here', error);
+    })
+    this.setState({currentPg: 'user_profile'});
   }
 
   logOut() {
