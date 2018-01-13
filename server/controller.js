@@ -175,5 +175,18 @@ module.exports = {
       db.rmFollow(req.body.followerId, req.body.followedId)
         .then(res.status(201).send('Unfollowed!'));
     } 
+    
+  },
+
+  getComments: function(req, res) {
+    // console.log('reqbody for getComment', req.body);
+    db.getAllCommentFromPost(req.body.postId)
+      .then((comments) => {
+        let allComments = comments.rows.map(comment => {
+          return {'name': comment.name, 'text': comment.text};
+        })
+        res.json(allComments);
+      });
   }
+
 };
