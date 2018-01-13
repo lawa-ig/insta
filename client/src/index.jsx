@@ -137,8 +137,7 @@ class App extends React.Component {
     } else if (currentPg === 'feed') {
       return (
         <div>
-          <NavBar 
-            allUsers={this.state.allUsernames} 
+          <NavBar allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
             loggedInUserId={this.state.loggedInUser.user_id}
             logOut={this.logOut.bind(this)}

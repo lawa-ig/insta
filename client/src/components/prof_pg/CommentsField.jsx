@@ -89,6 +89,7 @@ class CommentsField extends React.Component {
             )
             : this.state.postComments = []
         }
+<<<<<<< HEAD
   
         <Modal.Description image className='footer-content'>    
           <Container className='modal-footer-contain'>
@@ -113,5 +114,29 @@ class CommentsField extends React.Component {
   }
   
 }
+=======
+      </Comment.Group>
+
+      <Modal.Description image className='footer-content'>    
+        <Container className='modal-footer-contain'>
+          <Divider />
+          <Image className="heart-icon" src={props.isLiked ? './assets/redheart.png' : './assets/like-icon.png'} onClick={props.toggleLike} size='mini' inline/>  
+          <Image src="./assets/comment-icon.png" size='mini' inline/>                  
+          {/* <Header className='likes-text' size='small'>{props.likeCount.length} Likes</Header> */}
+          <Modal size="mini" trigger={<Header className='likes-text' size='small'>{props.likeCount.length} Likes</Header>}>
+            <Modal.Header>Likes</Modal.Header>
+            <Modal.Content scrolling><List divided verticalAlign='middle'>{props.likeCount.map((like) => {
+              return <List.Item><Image avatar src={like.prof_pic} /><List.Content>{like.name}</List.Content><List.Content className="small-button" floated="right"><Button color="blue" size="mini">Following</Button></List.Content></List.Item>;
+            })}</List></Modal.Content>
+          </Modal>
+          <p className='post-date'> {props.post.date} </p>
+          <Divider />
+          <Input className='add-comment-input' focus placeholder='Add a Comment...' />
+        </Container>
+      </Modal.Description>
+    </div>
+  );
+};
+>>>>>>> readded modal to photo modal and merged fb log in server with index.js server
 
 export default CommentsField;
