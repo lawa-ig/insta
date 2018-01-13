@@ -5,6 +5,7 @@ import LogIn from './components/LogIn.jsx';
 import UserProfile from './components/prof_pg/UserProfile.jsx';
 import AllFeeds from './components/main_feed_pg/all_feed.jsx';
 import fakeProfileTableData from '../../database/fakeProfileTableData';
+import axios from 'axios';
 
 const larry = {
   user_id: 2,
@@ -94,8 +95,16 @@ class App extends React.Component {
     }
   }
 
-  logIn() {
-    // axios.get()
+  logIn(e) {
+    axios.post('/logon', {
+        email: e.value
+    })
+      .then(function (response) {
+        console.log('here is the server response', response);
+      })
+      .catch(function (error) {
+        console.log('there was an error', error);
+      });
     this.setState({currentPg: 'feed'});
   }
 

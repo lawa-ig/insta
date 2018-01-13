@@ -147,6 +147,11 @@ app.options('/*', function (req, res, next) {
 
 app.use('/', router);
 
+
+app.post('/logon', function (req, res) {
+    console.log('request', req)
+    res.json(req.body.params);
+});
 app.get('/login/facebook',
 
     // will keep this in case we need to track request params later
