@@ -52,8 +52,8 @@ module.exports = {
               console.log('insert new fb user had an error', err);
             });
         }
-      });
-
+      })
+0
   },
   usersFollowers: function(req, res) {
     db.getUsersFollowers(1) //CURRENTLY HARD CODED USER ID, change to req.body
