@@ -116,7 +116,7 @@ class PicModal extends React.Component {
             <Divider className='top-div-modal'/>
       
             <CommentsField user={this.props.user} 
-              likeCount={this.state.postLikes.length} 
+              likeCount={this.state.postLikes} 
               post={this.props.post} 
               toggleLike={e => this.toggleLike(e)} 
               isLiked={this.state.liked}
