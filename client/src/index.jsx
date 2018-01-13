@@ -102,6 +102,7 @@ class App extends React.Component {
       return (
         <div>
           <NavBar allUsers={this.state.allUsernames} 
+            allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}/> {/* Albert */}
@@ -124,6 +125,7 @@ class App extends React.Component {
           <NavBar 
             allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
+
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
           /> {/* Albert */}
