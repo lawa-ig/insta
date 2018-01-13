@@ -16,7 +16,13 @@ router.post('/like', controller.changeLike);
 router.post('/comment', controller.changeComment);
 router.post('/follow', controller.changeFollow);
 router.post('/comments', controller.getComments);
+<<<<<<< HEAD
 router.post('/uploadprofimg', upload.single('image'), controller.uploadProfImg);
 router.post('/description', controller.updateDescription);
+=======
+router.post('/logon', controller.feed);
+router.post('/id', controller.switchUser);
+router.get('/feed', controller.renderFeed);
+>>>>>>> attempted to get fb callback working
 
 module.exports = router;

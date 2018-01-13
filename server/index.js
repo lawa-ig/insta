@@ -172,9 +172,9 @@ app.get('/login/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: 'http://www.instagram.com' }),
     function (req, res) {
         // Successful authentication, redirect home. 
-        console.log('here is user', res.req.user);
+        console.log('here is user', res.req.user.id);
         // callback here with user info
-        res.redirect('/logon');
+        res.redirect('/feed');
     });
 
 

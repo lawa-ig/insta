@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, 
       allUsernames: [], //for dynamic search
-      loggedInUser: fakeProfileTableData[0], //waiting for login profile name
+      loggedInUser: null, //waiting for login profile name
       onPageForUser: null, //is replaced by a real user on render
       //****************************************************************************/
       currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE

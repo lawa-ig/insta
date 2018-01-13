@@ -62,6 +62,10 @@ const checkForEmail = function (email) {
   return pool.query('SELECT users.user_id FROM users WHERE users.email = $1', [email]);
 };
 
+const checkForFbId = function (id) {
+  return pool.query('SELECT users.user_id FROM users WHERE users.fb_id = $1', [id]);
+};
+
 const getUserProfile = function (userId) {
   return pool.query('SELECT users.user_id, users.name, users.prof_pic, users.description FROM users \
     WHERE users.user_id = $1',

@@ -97,6 +97,29 @@ module.exports = {
         console.log('feed had an error', err);
       });
   },
+  FBfeed: function (req, res) {
+    console.log('request', req.body.id);
+    db.checkForFbId(req.body.id)
+      .then((results) => {
+        console.log('results', results.rows);
+        db.getAllPosts(results.rows[0].user_id) //CURRENTLY HARD CODED USER ID, change to req.body
+          .then((results) => {
+            console.log('more results', results)
+            let posts = results.rows;
+            db.getPostsLiked(1)
+              .then((likeResult) => {
+                let likedPosts = likeResult.rows.map(result => { return result.post_id; });
+                posts.forEach(post => {
+                  likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
+                });
+                res.json(posts);
+              });
+          })
+      })
+      .catch((err) => {
+        console.log('feed had an error', err);
+      });
+  },
  
   insertPost: function(req, res) {
     let timestamp = moment().format();
