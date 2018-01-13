@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import config from '../../../server/config.js';
+import config from '../../../server/config.js';
 import { Button, Form, Grid, Header, Image, Icon, Message, Segment } from 'semantic-ui-react'
 
 
@@ -9,7 +9,7 @@ import { Button, Form, Grid, Header, Image, Icon, Message, Segment } from 'seman
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-
+    this.logOut = this.logOut.bind(this);
   }
 
   logOut(e) {
@@ -24,7 +24,7 @@ class LogIn extends React.Component {
 
   handleClick(e) {
     // perform a get request to server
-    axios.get('/logon/', {
+    axios.get('/logon', {
       params: {
         email: this.email.value,
         password: this.password.value
@@ -36,7 +36,7 @@ class LogIn extends React.Component {
       .catch(function (error) {
         console.log('there was an error', error);
       });
-  }
+    };
 
 
   render() {
@@ -62,10 +62,11 @@ class LogIn extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{ maxWidth: 450 }}>
+            <img className="logo" src="http://static.tumblr.com/tnhrvnx/SiOm2xuu2/fireythings_flame_logo.jpg" />
             <Header as='h1' color='instagram' textAlign='center'>
-              Instalawa
-        </Header>
-            <Button color="facebook"><Icon name="facebook" /><a href={'https://www.facebook.com/v2.8/dialog/oauth?client_id=' + process.env.FB_ID + '&redirect_uri=http%3A%2F%2Flocalhost:3000%2Flogin%2Ffacebook%2Fcallback'}>Log in with Facebook</a></Button>
+                <div className="logo-name" > Instalawa </div>
+           </Header>
+            <Button color="facebook"><Icon name="facebook" /><a href={'https://www.facebook.com/v2.8/dialog/oauth?client_id=' + config.FACEBOOK_APP_ID + '&redirect_uri=http%3A%2F%2Flocalhost:3000%2Flogin%2Ffacebook%2Fcallback'}>Log in with Facebook</a></Button>
             <Form size='large'>
               <Segment stacked>
                 <Form.Input
@@ -73,7 +74,7 @@ class LogIn extends React.Component {
                   icon='user'
                   iconPosition='left'
                   placeholder='Username or email'
-                  ref={(input) => { this.email = input }}
+                  onChange={(input) => { this.email = input }}
                 />
                 <Form.Input
                   fluid
@@ -81,10 +82,10 @@ class LogIn extends React.Component {
                   iconPosition='left'
                   placeholder='Password'
                   type='password'
-                  ref={(input) => { this.password = input }}
+                  onChange={(input) => { this.password = input }}
                 />
 
-                <Button color='instagram' onClick={(e) => {this.handleClick(e)}} fluid size='large'>Login</Button>
+                <Button color='instagram' onClick={(e) => {this.props.logIn(this.email)}} fluid size='large'>Login</Button>
               </Segment>
             </Form>
             <Message>

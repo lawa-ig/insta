@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Comment, Container, Divider, Header, Image, Modal } from 'semantic-ui-react';
+import { Input, Comment, Container, List, Button, Divider, Header, Image, Modal } from 'semantic-ui-react';
 import SingleComment from './SingleComment.jsx';
 
 const CommentsField = (props) => {

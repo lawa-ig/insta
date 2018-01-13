@@ -88,8 +88,13 @@ class App extends React.Component {
     
   }
 
+  logIn() {
+    // axios.get()
+    this.setState({currentPg: 'feed'});
+  }
+
   logOut() {
-    // this.setState({loggedInUser: })
+    this.setState({currentPg: 'login_page' });
   }
 
   pageRouter(currentPg) {
@@ -97,8 +102,8 @@ class App extends React.Component {
       return (
         <div>
           <NavBar allUsers={this.state.allUsernames} 
-            allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
+            logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}/> {/* Albert */}
           {this.state.onPageForUser &&
             <UserProfile 
@@ -111,7 +116,7 @@ class App extends React.Component {
       );
     } else if (currentPg === 'login_page') {
       return (
-        <LogIn /> //(WILL)
+        <LogIn logIn={e => this.logIn(e)}/> //(WILL)
       );
     } else if (currentPg === 'feed') {
       return (
@@ -119,6 +124,7 @@ class App extends React.Component {
           <NavBar 
             allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
+            logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
           /> {/* Albert */}
           <AllFeeds data={this.state.onPageForUser} /> {/*Larry*/}
