@@ -68,8 +68,11 @@
   }
 
   .prof-avatar {
-      width: 75%;
-      height: auto;
+      width: 13vw;
+      height: 13vw;
+      border-radius:50%;
+      object-fit: cover;
+      cursor: pointer;
   }
 
   .profile-name-title {
@@ -121,7 +124,23 @@
   }
 
   .profile-sub-data-num {
-      font-weight: bold;
+    font-weight: bold;
+  }
+
+  .self-description {
+    cursor: pointer;
+  }
+
+  .description-modal {
+    padding: 10px;
+  }
+
+  .description-form {
+    margin: 1em;
+  }
+
+  .description-button {
+    float: right;
   }
 
 /* Picture Grid */
@@ -369,5 +388,4 @@ semantic.min.css:19
   font-weight: bold;
 }
 
-semantic.min.css:19
 

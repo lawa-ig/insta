@@ -42,7 +42,6 @@ const getPostsLiked = function (userId, postsIdArray) {
 const insertPost = function (caption, userId, fileName, timestamp) {
   const AWSUrl = 'https://s3-us-west-1.amazonaws.com/lawa-ig/images/';
   const fileUrl = `${AWSUrl}${userId}-${encodeURIComponent(timestamp)}${fileName.slice(-4)}`;
-  console.log(fileUrl);
   return pool.query('INSERT INTO posts(img, like_count, user_id, caption, created_at) \
     VALUES ($1, $2, $3, $4, $5)',
     [fileUrl, 0, userId, caption, timestamp]);
@@ -122,6 +121,17 @@ const getAllCommentFromPost = function(postId) {
     [postId]);
 };
 
+const updateProfImg = function (userId, fileName, timestamp) {
+  const AWSUrl = 'https://s3-us-west-1.amazonaws.com/lawa-ig/images/';
+  const fileUrl = `${AWSUrl}${userId}-${encodeURIComponent(timestamp)}${fileName.slice(-4)}`;
+  return pool.query('UPDATE users SET prof_pic = $1 WHERE user_id = $2', [fileUrl, userId])
+}
+
+const updateDescription = function(userId, description) {
+  console.log(userId, description);
+  return pool.query('UPDATE users SET description = $1 WHERE user_id = $2', [description, userId])
+}
+
 module.exports = {
   getUsersFollowing,
   getUsersFollowers,
@@ -142,5 +152,7 @@ module.exports = {
   getLikesOnPost,
   checkLike, 
   checkFollow,
-  getAllCommentFromPost
+  getAllCommentFromPost,
+  updateProfImg,
+  updateDescription
 };

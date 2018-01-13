@@ -78,11 +78,6 @@ class UploadModal extends React.Component {
     if (submitFlag === 'not submitted') {
       return (<Form onSubmit={this.handleSubmit.bind(this)}>
         <Form.Input required placeholder='insert caption here' onChange={this.onCaptionChange.bind(this)} />
-        <Message
-          success
-          header='Form Completed'
-          content="You lavagrammed it up!"
-        />
         <Button>Submit</Button>
       </Form>);
     } else if (submitFlag === 'submitted') {
@@ -91,7 +86,7 @@ class UploadModal extends React.Component {
         <Message
           success
           header='Form Completed'
-          content="You lavagrammed it up!"
+          content="You lawagrammed it up!"
         />
         <Button>Submit</Button>
       </Form>);

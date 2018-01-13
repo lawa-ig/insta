@@ -2,7 +2,7 @@ const app = require('./index.js');
 const db = require('../database/index.js');
 const AWS = require('aws-sdk');
 const moment = require('moment');
-const config = ''; //= require('./config.js');
+const config = '' //require('./config.js');
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID || config.AWS_ACCESS_KEY_ID || '',
@@ -77,7 +77,7 @@ module.exports = {
 
   insertPost: function(req, res) {
     let timestamp = moment().format();
-    let fileName = `images/${ userId }-${ timestamp.toString().split(' ').join('+') }${ req.file.originalname.slice(-4) }`;
+    let fileName = `images/${ req.body.userId }-${ timestamp.toString().split(' ').join('+') }${ req.file.originalname.slice(-4) }`;
     s3.putObject({
       Bucket: 'lawa-ig',
       Key: fileName,
@@ -175,5 +175,34 @@ module.exports = {
         });
         res.json(allComments);
       });
-  }
+  },
+
+    uploadProfImg: function(req, res) {
+      let timestamp = moment().format();
+      let fileName = `images/${req.body.userId}-${timestamp.toString().split(' ').join('+')}${req.file.originalname.slice(-4)}`;
+      s3.putObject({
+        Bucket: 'lawa-ig',
+        Key: fileName,
+        Body: req.file.buffer,
+        ACL: 'public-read', // your permisions  
+      }, (err, result) => {
+        if (result) {
+          db.updateProfImg(req.body.userId, fileName, timestamp) //req.body.userId
+            .then(res.sendStatus(201))
+            .catch(err => {
+              console.log('insertPost had an error');
+            });
+        }
+        else {
+          console.log(err);
+        }
+      });
+    },
+
+    updateDescription: function(req, res) {
+      db.updateDescription(req.body.user, req.body.description)
+        .then(() => {
+          res.sendStatus(201);
+        });
+    }
 };
