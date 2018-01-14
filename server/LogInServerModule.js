@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 
-// const config = require('./config.js');
+const config = require('./config.js');
 
 // const db = require('../database/index.js');
 

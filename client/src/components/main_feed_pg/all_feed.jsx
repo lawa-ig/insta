@@ -13,7 +13,8 @@ class AllFeeds extends React.Component {
 	}
 
 	componentDidMount() {
-		this.updateFeed(this.props.user.user_id);
+		console.log('data', this.props.data.user_id);
+		this.updateFeed(this.props.data.user_id);
 	}
 
 	updateFeed(userId) {

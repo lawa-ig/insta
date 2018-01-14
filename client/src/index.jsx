@@ -5,13 +5,7 @@ import LogIn from './components/LogIn.jsx';
 import UserProfile from './components/prof_pg/UserProfile.jsx';
 import AllFeeds from './components/main_feed_pg/all_feed.jsx';
 import fakeProfileTableData from '../../database/fakeProfileTableData';
-
-const larry = {
-  user_id: 2,
-  name: 'Larry Chang',
-  description: 'meow',
-  profile_pic: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Avatar_cat.png'
-}
+import axios from 'axios';
 
 class App extends React.Component {
   constructor() {
@@ -19,20 +13,21 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, 
       allUsernames: [], //for dynamic search
-      loggedInUser: larry, //waiting for login profile name
+      loggedInUser: {user_id: 1}, //waiting for login profile name
       onPageForUser: null, //is replaced by a real user on render
       //****************************************************************************/
-      currentPg: 'user_profile' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
+      currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
       //****************************************************************************/
     };
+    this.loginUser = this.loginUser.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     //setup search component
     this.getAllUserNames();
 
     this.loginUser(1);
-    this.changeUser(1);
+    // this.changeUser(1);
   }
 
   getAllUserNames() {
@@ -56,6 +51,7 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
+    this.setState({ currentPg: 'user_profile' })
     this.mountUser(userId, 'change');
   }
 
@@ -77,7 +73,10 @@ class App extends React.Component {
     if (changeOrLogin === 'login') {
       fetch('/profile', postConfig)
         .then(data => data.json())
-        .then(userDataObj => this.setState({loggedInUser: userDataObj}));
+        .then(userDataObj => {
+          console.log('logged in', userDataObj)
+          this.setState({loggedInUser: userDataObj, onPageForUser: userDataObj});
+        });
     } else {
       fetch('/profile', postConfig)
         .then(data => data.json())
@@ -90,13 +89,34 @@ class App extends React.Component {
       this.setState({currentPg: 'feed'});
     } else if (toPage === 'profile') {
       this.setState({currentPg: 'user_profile'});
+      console.log('user', this.state.onPageForUser);
       this.changeUser(this.state.onPageForUser.user_id);
     }
   }
 
-  logIn() {
-    // axios.get()
-    this.setState({currentPg: 'feed'});
+  logIn(e) {
+    axios.post('/logon', {
+        email: e.value
+    })
+      .then(function (response) {
+        console.log('here is the server response', response);
+      })
+      .catch(function (error) {
+        console.log('there was an error', error);
+      });
+
+    axios.post('/id', {
+      email: e.value
+    })
+    .then(response => {
+      console.log('here is the id', response.data);
+      console.log('this', this);
+      this.loginUser(response.data);
+    })
+    .catch(function(error) {
+      console.log('there was an error here', error);
+    })
+    this.setState({currentPg: 'user_profile', loggedIn: true});
   }
 
   logOut() {
@@ -116,7 +136,7 @@ class App extends React.Component {
           <NavBar allUsers={this.state.allUsernames} 
             allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)}
-            loggedInUserId={this.state.loggedInUser.user_id} 
+            loggedInUser={this.state.loggedInUser} 
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
@@ -137,15 +157,14 @@ class App extends React.Component {
     } else if (currentPg === 'feed') {
       return (
         <div>
-          <NavBar 
-            allUsers={this.state.allUsernames} 
+          <NavBar allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
-            loggedInUserId={this.state.loggedInUser.user_id}
+            loggedInUser={this.state.loggedInUser}
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
           /> {/* Albert */}
-          <AllFeeds user={this.state.loggedInUser} data={this.state.onPageForUser} /> {/*Larry*/}
+          <AllFeeds data={this.state.loggedInUser} /> {/*Larry*/}
         </div>
       );
     }
@@ -163,3 +182,4 @@ class App extends React.Component {
 }
 
 export default App;
+ReactDOM.render(<App/>, document.getElementById('app'));

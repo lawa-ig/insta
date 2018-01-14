@@ -9,34 +9,10 @@ import { Button, Form, Grid, Header, Image, Icon, Message, Segment } from 'seman
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
+
   }
 
-  logOut(e) {
-    axios.get('/logout')
-      .then(function(response) {
-        console.log('logged out');
-      })
-      .catch(function(error) {
-        console.log('error logging out', error);
-      })
-  }
 
-  handleClick(e) {
-    // perform a get request to server
-    axios.get('/logon', {
-      params: {
-        email: this.email.value,
-        password: this.password.value
-      }
-    })
-      .then(function (response) {
-        console.log('here is the server response', response);
-      })
-      .catch(function (error) {
-        console.log('there was an error', error);
-      });
-    };
 
 
   render() {
@@ -66,23 +42,23 @@ class LogIn extends React.Component {
             <Header as='h1' color='instagram' textAlign='center'>
                 <div className="logo-name" > Instalawa </div>
            </Header>
-            <Button color="facebook"><Icon name="facebook" /><a href={'https://www.facebook.com/v2.8/dialog/oauth?client_id=' + process.env.FB_ID + '&redirect_uri=http%3A%2F%2Flocalhost:3000%2Flogin%2Ffacebook%2Fcallback'}>Log in with Facebook</a></Button>
+            <Button color="facebook"><Icon name="facebook" /><a href={'https://www.facebook.com/v2.8/dialog/oauth?client_id=' + config.FACEBOOK_APP_ID + '&redirect_uri=http%3A%2F%2Flocalhost:3000%2Flogin%2Ffacebook%2Fcallback'}>Log in with Facebook</a></Button>
             <Form size='large'>
               <Segment stacked>
-                <Form.Input
+                <input
                   fluid
                   icon='user'
                   iconPosition='left'
                   placeholder='Username or email'
-                  onChange={(input) => { this.email = input }}
+                  ref={(input) => { this.email = input }}
                 />
-                <Form.Input
+                <input
                   fluid
                   icon='lock'
                   iconPosition='left'
                   placeholder='Password'
                   type='password'
-                  onChange={(input) => { this.password = input }}
+                  ref={(input) => { this.password = input }}
                 />
 
                 <Button color='instagram' onClick={(e) => {this.props.logIn(this.email)}} fluid size='large'>Login</Button>
