@@ -95,7 +95,12 @@ class CommentsField extends React.Component {
             <Divider />
             <Image className="heart-icon" src={this.props.isLiked ? './assets/redheart.png' : './assets/like-icon.png'} onClick={this.props.toggleLike} size='mini' inline/>  
             <Image src="./assets/comment-icon.png" size='mini' inline onClick={() => this.nameInput.focus()}/>                  
-            <Header className='likes-text' size='small'>{this.props.likeCount.length} Likes</Header>
+            <Modal size="mini" trigger={<Header className='likes-text' size='small'>{this.props.likeCount.length} Likes</Header>}>
+              <Modal.Header>Likes</Modal.Header>
+              <Modal.Content scrolling><List divided verticalAlign='middle'>{this.props.user.followers.map((follower) => {
+                return <List.Item><Image avatar src={follower.prof_pic} /><List.Content className="follow">{follower.name}</List.Content><List.Content className="small-button" floated="right"></List.Content></List.Item>;
+              })}</List></Modal.Content>
+            </Modal>
             <p className='post-date'> {this.props.post.date} </p>
             <Divider />
             <input 

@@ -4,12 +4,22 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const router = require('./router.js');
 
-// setting up express server
+
+
+
+var expressSession = require('express-session');
+
+
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.use(cookieParser());
+
+
+app.use(expressSession({ secret: 'mySecretKey' }));
 
 app.use(express.static(__dirname + '/../client/dist'));
 
@@ -22,6 +32,9 @@ app.options('/*', function (req, res, next) {
 });
 
 app.use('/', router);
+
+
+
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`LawaGram listening on ${port}!`));

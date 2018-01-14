@@ -14,8 +14,8 @@ class AllFeeds extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log('data', this.props.user.user_id);
 		this.updateFeed(this.props.user.user_id);
-
 	}
 
 	updateFeed(userId) {
