@@ -19,7 +19,7 @@ module.exports = {
   },
 
   usersFollowing: function(req, res) {
-    db.getUsersFollowing(req.body) //CURRENTLY HARD CODED USER ID, change to req.body
+    db.getUsersFollowing(req.body) 
       .then((results) => {
         res.json(results.rows);
       })
@@ -27,25 +27,7 @@ module.exports = {
         console.log('getUsersFollowing had an error', err);
       });
   },
-  fbLogin: function(req, res) {
-    db.checkForUser(res.body.id)
-      .then((results) => {
-        let user = results.rows;
-        if (user.length === 0) {
-          let newUser = {
-            'id': res.body.id,
-            'displayName': res.body.displayName,
-            'photo': res.body.photos[0].value
-          };
-          db.insertNewFbUser(newUser)
-            .then(res.sendStatus(201))
-            .catch((err) => {
-              console.log('insert new fb user had an error', err);
-            });
-        }
-      })
 
-  },
   usersFollowers: function(req, res) {
     db.getUsersFollowers(req.body) 
       .then((results) => {
@@ -73,6 +55,7 @@ module.exports = {
         console.log('feed had an error', err);
       });
   },
+
   signUp: function(req, res) {
    db.insertNewUser(req.body.email, req.body.name)
      .then((results) => {
@@ -145,18 +128,20 @@ module.exports = {
         res.json(profileNames);
       });
   }, 
+
   switchUser: function(req, res) {
     db.checkForEmail(req.body.email)
       .then(result => {
         if (result.rows.length === 0) {
-          res.send('sign up idiot');
+          res.send('sign up please');
         }
         res.json(result.rows[0].user_id);
       })
       .catch(error => {
-        console.log('error switching users good sir', error);
+        console.log('error switching users', error);
       })
   },
+
   //for profile page view
   currentUserProfile: function(req, res) {
     
@@ -190,6 +175,7 @@ module.exports = {
         .then(res.status(201).send('Comment Removed'));
     } 
   },
+  
   changeLike: function(req, res) {
     if (req.body.status === 'checkLike') {
       db.checkLike(req.body.userId, req.body.postId)

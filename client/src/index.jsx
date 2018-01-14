@@ -26,7 +26,7 @@ class App extends React.Component {
     //setup search component
     this.getAllUserNames();
 
-    this.loginUser(2);
+    this.loginUser(2); // trying out a different starting user
     this.changeUser(2);
   }
 
@@ -110,7 +110,7 @@ class App extends React.Component {
         }
       })
       .catch(function (error) {
-        console.log('there was an error', error);
+        console.log('there was an error logging in', error);
       });
 
     axios.post('/id', {
@@ -125,7 +125,7 @@ class App extends React.Component {
       this.setState({ currentPg: 'user_profile' });
     })
     .catch(function(error) {
-      console.log('there was an error here', error);
+      console.log('there was an error with your log in information', error);
     })
   }
 
