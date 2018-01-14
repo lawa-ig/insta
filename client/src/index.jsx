@@ -26,8 +26,8 @@ class App extends React.Component {
     //setup search component
     this.getAllUserNames();
 
-    this.loginUser(1);
-    this.changeUser(1);
+    this.loginUser(2);
+    this.changeUser(2);
   }
 
   getAllUserNames() {
@@ -89,13 +89,12 @@ class App extends React.Component {
     }
   }
   signUp(arr) {
-    console.log(arr);
     axios.post('/signUp', {
       email: arr[0].value,
       name: arr[1].value
     })
-      .then(function (response) {
-        console.log('here is the sign up', response);
+      .then((response) => {
+        console.log('here is the sign up info', response);
       })
       .catch(function (error) {
         console.log('there was an error', error);
@@ -106,9 +105,7 @@ class App extends React.Component {
         email: e.value
     })
       .then(function (response) {
-        if (typeof response.data !== 'string') {
-          console.log('here is the server response', response);
-        } else {
+        if (typeof response.data === 'string') {
           alert('you need to sign up');
         }
       })
@@ -120,8 +117,6 @@ class App extends React.Component {
       email: e.value
     })
     .then(response => {
-      console.log('here is the id', response.data);
-      console.log('this', this);
       if (typeof response.data === 'string') {
         return;
       }

@@ -47,7 +47,7 @@ module.exports = {
 
   },
   usersFollowers: function(req, res) {
-    db.getUsersFollowers(req.body) //CURRENTLY HARD CODED USER ID, change to req.body
+    db.getUsersFollowers(req.body) 
       .then((results) => {
         res.json(results.rows);
       })
@@ -57,7 +57,6 @@ module.exports = {
   },
  
   renderFeed: function(req, res) {
-    console.log('here is req', req.body);
     db.getAllPosts(req.body.userId)
       .then((results) => {
         let posts = results.rows;
@@ -75,7 +74,6 @@ module.exports = {
       });
   },
   signUp: function(req, res) {
-   console.log('request', req.body.email);
    db.insertNewUser(req.body.email, req.body.name)
      .then((results) => {
        res.status(201).send('inserted');
@@ -87,9 +85,7 @@ module.exports = {
   feed: function(req, res) {
     db.checkForEmail(req.body.email)
     .then((results) => {
-      console.log('results', results.rows);  
       if (results.rows.length === 0) {
-        console.log('you need to sign up');
         res.send('you need to sign up');
       }
     db.getAllPosts(results.rows[0].user_id)
@@ -109,29 +105,6 @@ module.exports = {
         console.log('feed had an error', err);
       });
   },
-  FBfeed: function (req, res) {
-    // hardcoded. still doesn't work
-    db.checkForFbId('10159843655865710')
-      .then((results) => {
-        console.log('results', results.rows);
-        db.getAllPosts(results.rows[0].user_id) //CURRENTLY HARD CODED USER ID, change to req.body
-          .then((results) => {
-            console.log('more results', results)
-            let posts = results.rows;
-            db.getPostsLiked(1)
-              .then((likeResult) => {
-                let likedPosts = likeResult.rows.map(result => { return result.post_id; });
-                posts.forEach(post => {
-                  likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
-                });
-                res.json(posts);
-              });
-          })
-      })
-      .catch((err) => {
-        console.log('feed had an error', err);
-      });
-  },
  
   insertPost: function(req, res) {
     let timestamp = moment().format();
@@ -147,7 +120,7 @@ module.exports = {
           .then((result) => {
             console.log(result);
             res.json({
-              post_id: 0, // not actual postID, temp placeholder
+              post_id: 0, // not actual postID, temp placeholder (should we change this? WP)
               img: `${AWSUrl}${userId}-${encodeURIComponent(timestamp)}${fileName.slice(-4)}`,
               like_count: 0,
               user_id: req.body.userId,
@@ -173,11 +146,9 @@ module.exports = {
       });
   }, 
   switchUser: function(req, res) {
-    console.log('req in controller', req.body.email);
     db.checkForEmail(req.body.email)
       .then(result => {
         if (result.rows.length === 0) {
-          console.log('no user');
           res.send('sign up idiot');
         }
         res.json(result.rows[0].user_id);
