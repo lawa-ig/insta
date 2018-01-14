@@ -111,7 +111,7 @@ module.exports = {
                 posts.forEach(post => {
                   likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
                 });
-                res.send(posts);
+                res.json(posts);
               });
           })
       })
