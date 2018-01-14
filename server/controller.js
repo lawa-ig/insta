@@ -2,7 +2,7 @@ const app = require('./index.js');
 const db = require('../database/index.js');
 const AWS = require('aws-sdk');
 const moment = require('moment');
-const config = ''//require('./config.js');
+const config = require('./config.js');
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID || config.AWS_ACCESS_KEY_ID || '',

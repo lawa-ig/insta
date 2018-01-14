@@ -104,9 +104,18 @@ class App extends React.Component {
   }
 
   newUpload(newPost) {
+    this.state.onPageForUser.posts.push(newPost);
     this.setState((prevState) => {
-      loggedInUser: prevState.loggedInUser.posts.push(newPost);
-    })
+      return {onPageForUser: prevState.onPageForUser.posts};
+    });
+  }
+
+  newProfPic(profPic) {
+    let newState = this.state.onPageForUser;
+    newState.prof_pic = profPic;
+    this.setState({
+      onPageForUser: newState
+    });
   }
 
   pageRouter(currentPg) {
@@ -126,6 +135,7 @@ class App extends React.Component {
               loggedInUser={this.state.loggedInUser} 
               user={this.state.onPageForUser} 
               changeFollowersLive = {this.changeFollowersLive.bind(this)} 
+              newProfPic = {this.newProfPic.bind(this)}
             />
           }
         </div>

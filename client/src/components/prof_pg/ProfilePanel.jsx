@@ -19,6 +19,11 @@ class ProfilePanel extends React.Component {
     if (this.props.user.user_id !== this.state.currUser) {
       this.checkIfFollowing();
     }
+    if (this.props.user.prof_pic !== this.state.profPic) {
+      this.setState({
+        profPic: this.props.user.prof_pic
+      })
+    }
   }
 
   checkIfFollowing() {
@@ -63,9 +68,7 @@ class ProfilePanel extends React.Component {
       image.append('userId', this.props.loggedInUser.user_id);
       axios.post('/uploadprofimg', image)
         .then((response)=> {
-          this.setState({
-            profPic: response.data
-          })
+          this.props.newProfPic(response.data);
         })
         .catch(err => {
           console.log('prof pic update failed', err);
