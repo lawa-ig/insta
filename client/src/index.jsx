@@ -27,7 +27,7 @@ class App extends React.Component {
     this.getAllUserNames();
 
     this.loginUser(1);
-    this.changeUser(1);
+    // this.changeUser(1);
   }
 
   getAllUserNames() {
@@ -51,6 +51,7 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
+    this.setState({ currentPg: 'user_profile' })
     this.mountUser(userId, 'change');
   }
 
@@ -112,7 +113,7 @@ class App extends React.Component {
     .catch(function(error) {
       console.log('there was an error here', error);
     })
-    this.setState({currentPg: 'user_profile'});
+    this.setState({currentPg: 'feed'});
   }
 
   logOut() {
@@ -167,7 +168,7 @@ class App extends React.Component {
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
           /> {/* Albert */}
-          <AllFeeds data={this.state.onPageForUser} /> {/*Larry*/}
+          <AllFeeds data={this.state.loggedInUser} /> {/*Larry*/}
         </div>
       );
     }

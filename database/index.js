@@ -154,6 +154,7 @@ module.exports = {
   rmFollow,
   addComment,
   checkForEmail,
+  checkForFbId,
   rmComment,
   checkForUser,
   insertNewFbUser,
