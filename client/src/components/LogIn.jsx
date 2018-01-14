@@ -12,9 +12,6 @@ class LogIn extends React.Component {
 
   }
 
-
-
-
   render() {
     <style>{`
         body > div,
@@ -38,14 +35,12 @@ class LogIn extends React.Component {
             <Form size='large'>
               <Segment stacked>
                 <input
-                  fluid
-                  icon='user'
-                  iconPosition='left'
-                  placeholder='Username or email'
+                  placeholder='Email'
                   ref={(input) => { this.email = input }}
                   className="login-input"
                 />
                 <input
+<<<<<<< HEAD
                   fluid
                   icon='lock'
                   iconPosition='left'
@@ -53,14 +48,24 @@ class LogIn extends React.Component {
                   type='password'
                   ref={(i) => { this.password = i }}
                   className="login-input"
+=======
+                  placeholder='Username'
+                  ref={(i) => { this.name = i }}
+>>>>>>> now have a modal for sign ups
                 />
 
                 <Button color='instagram' onClick={(e) => {this.props.logIn(this.email)}} fluid size='large'>Login</Button>
               </Segment>
             </Form>
             <Message>
-            {/* will probably get rid of this button  */}
-              <Button onClick={e => {this.props.signUp([this.email, this.password])}}>Sign Up</Button>
+              <Modal trigger={<Button>Sign Up</Button>} closeIcon>
+              <Modal.Header>Welcome to Insta-Lawa: Just enter your info to sign up and then log in to see your profile</Modal.Header>
+              <Modal.Content>
+                <input placeholder='Enter your email' ref={i => {this.newEmail = i }} />
+                <input placeholder='Enter your username' ref={i => {this.newUsername = i}} />
+                <Button onClick={e => {this.props.signUp([this.newEmail, this.newUsername]) }}>Let's get started</Button>
+              </Modal.Content>
+            </Modal>
             </Message>
           </Grid.Column>
         </Grid>

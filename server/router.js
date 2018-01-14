@@ -18,9 +18,13 @@ router.post('/follow', controller.changeFollow);
 router.post('/comments', controller.getComments);
 router.post('/uploadprofimg', upload.single('image'), controller.uploadProfImg);
 router.post('/description', controller.updateDescription);
-router.post('/logon', controller.feed);
+router.post('/logon', controller.feed); // this is to render user data upon log in
 router.post('/id', controller.switchUser);
+<<<<<<< HEAD
 router.post('/signUp', controller.signUp);
 router.post('/user', controller.getUserInfo);
+=======
+router.post('/signUp', controller.signUp); // signs a user up and puts his or her information in the db
+>>>>>>> now have a modal for sign ups
 
 module.exports = router;
