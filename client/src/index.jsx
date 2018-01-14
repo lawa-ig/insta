@@ -51,7 +51,7 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
-    this.mountUser(this.state.userId, 'change');
+    this.mountUser(userId, 'change');
   }
 
   loginUser(userId) {
@@ -85,6 +85,7 @@ class App extends React.Component {
       this.setState({currentPg: 'feed'});
     } else if (toPage === 'profile') {
       this.setState({currentPg: 'user_profile'});
+      console.log('user', this.state.onPageForUser);
       this.changeUser(this.state.onPageForUser.user_id);
     }
   }
@@ -111,7 +112,7 @@ class App extends React.Component {
     .catch(function(error) {
       console.log('there was an error here', error);
     })
-    this.setState({currentPg: 'feed'});
+    this.setState({currentPg: 'user_profile'});
   }
 
   logOut() {
