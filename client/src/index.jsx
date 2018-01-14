@@ -106,7 +106,11 @@ class App extends React.Component {
         email: e.value
     })
       .then(function (response) {
-        console.log('here is the server response', response);
+        if (typeof response.data !== 'string') {
+          console.log('here is the server response', response);
+        } else {
+          alert('you need to sign up');
+        }
       })
       .catch(function (error) {
         console.log('there was an error', error);
@@ -118,13 +122,16 @@ class App extends React.Component {
     .then(response => {
       console.log('here is the id', response.data);
       console.log('this', this);
+      if (typeof response.data === 'string') {
+        return;
+      }
       this.loginUser(response.data);
       this.changeUser(response.data);
+      this.setState({ currentPg: 'user_profile' });
     })
     .catch(function(error) {
       console.log('there was an error here', error);
     })
-    this.setState({currentPg: 'user_profile'});
   }
 
   logOut() {

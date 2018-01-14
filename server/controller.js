@@ -44,7 +44,7 @@ module.exports = {
             });
         }
       })
-0
+
   },
   usersFollowers: function(req, res) {
     db.getUsersFollowers(req.body) //CURRENTLY HARD CODED USER ID, change to req.body
@@ -85,14 +85,13 @@ module.exports = {
      })
   },
   feed: function(req, res) {
-
-    db.getAllPosts(req.body.userId) //CURRENTLY HARD CODED USER ID, change to req.body
-
     db.checkForEmail(req.body.email)
     .then((results) => {
-      console.log('results', results.rows);
-    db.getAllPosts(results.rows[0].user_id) //CURRENTLY HARD CODED USER ID, change to req.body
-  
+      console.log('results', results.rows);  
+      if (results.rows.length === 0) {
+        console.log('you need to sign up');
+        res.send('you need to sign up');
+      }
     db.getAllPosts(results.rows[0].user_id)
       .then((results) => {
         let posts = results.rows;
@@ -178,7 +177,8 @@ module.exports = {
     db.checkForEmail(req.body.email)
       .then(result => {
         if (result.rows.length === 0) {
-          db.insertNewFbUser(req.body.email);
+          console.log('no user');
+          res.send('sign up idiot');
         }
         res.json(result.rows[0].user_id);
       })
