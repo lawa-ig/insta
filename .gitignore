@@ -27,7 +27,7 @@ package-lock.json
 client/dist/bundle.js
 server/config.js
 server/LocalPassportServer.js
-server/LoginServerModule.js
+server/LogInServerModule.js
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
