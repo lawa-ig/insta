@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const router = require('./router.js');
-const config = require('./config.js');
+// const config = require('./config.js');
 
 
 const passport = require('passport');
@@ -45,10 +45,10 @@ function findUser(id) {
 
 // configure Facebook Strategy for use by passport
 passport.use(new FacebookStrategy({
-    // clientID: process.env.FB_ID,
-    clientID: config.FACEBOOK_APP_ID,
-    // clientSecret: process.env.FB_SECRET,
-    clientSecret: config.FACEBOOK_APP_SECRET,
+    clientID: process.env.FB_ID,
+    // clientID: config.FACEBOOK_APP_ID,
+    clientSecret: process.env.FB_SECRET,
+    // clientSecret: config.FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/login/facebook/callback",
     profileFields: ['id', 'displayName', 'link', 'photos', 'emails'],
     enableProof: true

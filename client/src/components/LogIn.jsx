@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import config from '../../../server/config.js';
+// import config from '../../../server/config.js';
 import { Button, Form, Grid, Header, Image, Icon, Message, Segment } from 'semantic-ui-react'
 
 

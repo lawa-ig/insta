@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, 
       allUsernames: [], //for dynamic search
-      loggedInUser: null, //waiting for login profile name
+      loggedInUser: {user_id: 1}, //waiting for login profile name
       onPageForUser: null, //is replaced by a real user on render
       //****************************************************************************/
       currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
@@ -22,11 +22,11 @@ class App extends React.Component {
     this.loginUser = this.loginUser.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     //setup search component
     this.getAllUserNames();
 
-    // this.loginUser(1);
+    this.loginUser(1);
     // this.changeUser(1);
   }
 
@@ -136,7 +136,7 @@ class App extends React.Component {
           <NavBar allUsers={this.state.allUsernames} 
             allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)}
-            loggedInUserId={this.state.loggedInUser.user_id} 
+            loggedInUser={this.state.loggedInUser} 
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
@@ -159,7 +159,7 @@ class App extends React.Component {
         <div>
           <NavBar allUsers={this.state.allUsernames} 
             changeUser={e => this.changeUser(e)} 
-            loggedInUserId={this.state.loggedInUser.user_id}
+            loggedInUser={this.state.loggedInUser}
             logOut={this.logOut.bind(this)}
             changePage={e => this.changePage(e)}
             newUpload={this.newUpload.bind(this)}
