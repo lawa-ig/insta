@@ -14,6 +14,12 @@ class DescriptionModal extends React.Component {
     this.setDescription = this.setDescription.bind(this);
   }
 
+  componentDidUpdate() {
+    this.setState({
+      description: this.props.description
+    })
+  }
+  
   handleSubmit() {
     axios.post('/description', {description: this.state.description, user: this.props.currUserId});
     this.setState({
