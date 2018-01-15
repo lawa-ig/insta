@@ -42,6 +42,7 @@ class UserProfile extends React.Component {
           followed={this.state.followed}
           changeFollowersLive={this.props.changeFollowersLive} 
           newProfPic={this.props.newProfPic}
+          changeUser={this.props.changeUser}
         />
         <PictureGrid user={this.props.user} loggedInUser={this.props.loggedInUser} />
       </div>
