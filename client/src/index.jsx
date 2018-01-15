@@ -91,7 +91,8 @@ class App extends React.Component {
   signUp(arr) {
     axios.post('/signUp', {
       email: arr[0].value,
-      name: arr[1].value
+      name: arr[1].value,
+      description: arr[2].value
     })
       .then((response) => {
         console.log('here is the sign up info', response);
