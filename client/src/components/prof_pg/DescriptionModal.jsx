@@ -13,14 +13,6 @@ class DescriptionModal extends React.Component {
     this.insertForm = this.insertForm.bind(this);
     this.setDescription = this.setDescription.bind(this);
   }
-
-  componentDidMount() {
-    if (this.state.description !== this.props.description) {
-      this.setState({
-        description: this.props.description
-      });
-    }
-  }
   
   handleSubmit() {
     axios.post('/description', {description: this.state.description, user: this.props.currUserId});
@@ -52,7 +44,7 @@ class DescriptionModal extends React.Component {
   render() {
     return (
       <Modal className="description-modal" size='small' onOpen={this.onOpen.bind(this)} 
-      trigger={this.setDescription()} >
+        trigger={this.setDescription()} >
         {this.insertForm(this.state.submitFlag)}
       </Modal>
     );
