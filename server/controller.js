@@ -57,7 +57,7 @@ module.exports = {
   },
 
   signUp: function(req, res) {
-    console.log(req.body);
+    console.log('description', req.body.description);
    db.insertNewUser(req.body.email, req.body.name, req.body.description)
      .then((results) => {
        res.status(201).send('inserted');
@@ -69,21 +69,22 @@ module.exports = {
   feed: function(req, res) {
     db.checkForEmail(req.body.email)
     .then((results) => {
+      console.log('results', results)
       if (results.rows.length === 0) {
         res.send('you need to sign up');
       }
-    db.getAllPosts(results.rows[0].user_id)
-      .then((results) => {
-        let posts = results.rows;
-        db.getPostsLiked(results.rows[0].user_id)
-          .then((likeResult) => {
-            let likedPosts = likeResult.rows.map(result => { return result.post_id; });
-            posts.forEach(post => {
-              likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
+      db.getAllPosts(results.rows[0].user_id)
+        .then((results) => {
+          let posts = results.rows;
+          db.getPostsLiked(results.rows[0].user_id)
+            .then((likeResult) => {
+              let likedPosts = likeResult.rows.map(result => { return result.post_id; });
+              posts.forEach(post => {
+                likedPosts.includes(post.post_id) ? post.liked = false : post.liked = true;
+              });
+              res.json(posts);
             });
-            res.json(posts);
-          });
-      })
+        })
     })
       .catch((err) => {
         console.log('feed had an error', err);

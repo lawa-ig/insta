@@ -92,7 +92,7 @@ class App extends React.Component {
     axios.post('/signUp', {
       email: arr[0].value,
       name: arr[1].value,
-      description: arr[2].value
+      description: ''
     })
       .then((response) => {
         console.log('here is the sign up info', response);

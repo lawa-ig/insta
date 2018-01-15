@@ -50,8 +50,7 @@ class LogIn extends React.Component {
               <Modal.Content>
                 <input placeholder='Enter your email' ref={i => {this.newEmail = i }} />
                 <input placeholder='Enter your username' ref={i => {this.newUsername = i}} />
-                  <input placeholder='Say something about yourself' ref={i => { this.description = i }} />
-                <Button onClick={e => {this.props.signUp([this.newEmail, this.newUsername, this.description]) }}>Let's get started</Button>
+                <Button onClick={e => {this.props.signUp([this.newEmail, this.newUsername]) }}>Let's get started</Button>
               </Modal.Content>
             </Modal>
             </Message>
