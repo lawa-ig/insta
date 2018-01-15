@@ -42,9 +42,9 @@ class UploadModal extends React.Component {
       this.state.uploadedFile.append('caption', this.state.caption);
       this.state.uploadedFile.append('userId', this.props.loggedInUser.user_id);
       axios.post('/post', this.state.uploadedFile)
-        .then((response) => {
-          this.props.newUpload(response.data);
-        })
+        // .then((response) => {
+        //   this.props.newUpload(response.data);
+        // })
         .catch(err => {
           console.log('image post failed', err);
         });

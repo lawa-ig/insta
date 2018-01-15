@@ -57,7 +57,6 @@ module.exports = {
   },
 
   signUp: function(req, res) {
-    console.log('description', req.body.description);
    db.insertNewUser(req.body.email, req.body.name, req.body.description)
      .then((results) => {
        res.status(201).send('inserted');
