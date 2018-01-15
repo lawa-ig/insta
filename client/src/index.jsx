@@ -16,7 +16,7 @@ class App extends React.Component {
       loggedInUser: {user_id: 2}, //waiting for login profile name
       onPageForUser: {user_id: 2}, //is replaced by a real user on render
       //****************************************************************************/
-      currentPg: 'feed' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
+      currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
       //****************************************************************************/
     };
     this.loginUser = this.loginUser.bind(this);
