@@ -13,8 +13,8 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, 
       allUsernames: [], //for dynamic search
-      loggedInUser: {user_id: 2}, //waiting for login profile name
-      onPageForUser: {user_id: 2}, //is replaced by a real user on render
+      loggedInUser: {user_id: 2, description: 'welcome to our app'}, //waiting for login profile name
+      onPageForUser: {user_id: 2, description: 'welcome to our app'}, //is replaced by a real user on render
       //****************************************************************************/
       currentPg: 'login_page' //<=CHANGE THIS VALUE TO RENDER AND WORK ON YOUR PAGE
       //****************************************************************************/
@@ -103,7 +103,7 @@ class App extends React.Component {
   }
   logIn(e) {
     axios.post('/logon', {
-        email: e.value
+        email: e.value,
     })
       .then(function (response) {
         if (typeof response.data === 'string') {
@@ -115,7 +115,7 @@ class App extends React.Component {
       });
 
     axios.post('/id', {
-      email: e.value
+      email: e.value,
     })
     .then(response => {
       if (typeof response.data === 'string') {
