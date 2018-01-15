@@ -40,18 +40,8 @@ class LogIn extends React.Component {
                   className="login-input"
                 />
                 <input
-<<<<<<< HEAD
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  type='password'
-                  ref={(i) => { this.password = i }}
-                  className="login-input"
-=======
                   placeholder='Username'
                   ref={(i) => { this.name = i }}
->>>>>>> now have a modal for sign ups
                 />
 
                 <Button color='instagram' onClick={(e) => {this.props.logIn(this.email)}} fluid size='large'>Login</Button>
