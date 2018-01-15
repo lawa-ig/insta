@@ -88,6 +88,7 @@ class App extends React.Component {
       this.changeUser(this.state.onPageForUser.user_id);
     }
   }
+  
   signUp(arr) {
     axios.post('/signUp', {
       email: arr[0].value,
