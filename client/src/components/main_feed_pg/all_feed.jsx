@@ -17,6 +17,7 @@ class AllFeeds extends React.Component {
 		this.getUserInfo(this.props.user.user_id);
 	}
 
+
 //updates state with all the posts with the account the logged in user is following
 	updateFeed(userId) {
 		axios.post('/feed', {userId})

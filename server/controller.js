@@ -69,7 +69,6 @@ module.exports = {
   feed: function(req, res) {
     db.checkForEmail(req.body.email)
     .then((results) => {
-      console.log('results', results)
       if (results.rows.length === 0) {
         res.send('you need to sign up');
       }

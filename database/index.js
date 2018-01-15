@@ -71,7 +71,6 @@ const checkForFbId = function (id) {
 };
 
 const getUserProfile = function (userId) {
-  console.log('ho');
   return pool.query('SELECT users.user_id, users.name, users.prof_pic, users.description FROM users \
     WHERE users.user_id = $1',
     [userId]);
