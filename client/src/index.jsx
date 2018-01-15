@@ -51,6 +51,7 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
+    console.log('changing to user', userId);
     this.mountUser(userId, 'change');
   }
 
@@ -167,6 +168,7 @@ class App extends React.Component {
           /> {/* Albert */}
           {this.state.onPageForUser &&
             <UserProfile 
+              changeUser={this.changeUser.bind(this)}
               loggedInUser={this.state.loggedInUser} 
               user={this.state.onPageForUser} 
               changeFollowersLive = {this.changeFollowersLive.bind(this)} 

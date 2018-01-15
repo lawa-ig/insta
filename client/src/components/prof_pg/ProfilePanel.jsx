@@ -21,6 +21,11 @@ class ProfilePanel extends React.Component {
     this.followMatches();
   }
 
+  componentWillReceiveProps() {
+    this.followMatches();
+    this.forceUpdate();
+  }
+
   componentDidUpdate() {
     if (this.props.user.user_id !== this.state.currUser) {
       this.checkIfFollowing();
@@ -28,8 +33,13 @@ class ProfilePanel extends React.Component {
     if (this.props.user.prof_pic !== this.state.profPic) {
       this.setState({
         profPic: this.props.user.prof_pic
-      })
+      });
     }
+  }
+
+  changeAndReset(userId) {
+    this.props.changeUser(userId);
+    this.forceUpdate();
   }
 
   checkIfFollowing() {
@@ -187,7 +197,7 @@ class ProfilePanel extends React.Component {
                   <Modal.Content scrolling>
                     <List divided verticalAlign='middle'>{
                       this.props.user.followers.map((follower) => {
-                        return <List.Item key={follower.name} className="ff-modal-listItem"><Image avatar src={follower.prof_pic} /><List.Content className="follow">{follower.name}</List.Content><List.Content className="small-button" floated="right">
+                        return <List.Item onClick={this.changeAndReset.bind(this, follower.user_id)} key={follower.name} className="ff-modal-listItem"><Image avatar src={follower.prof_pic} /><List.Content className="follow">{follower.name}</List.Content><List.Content className="small-button" floated="right">
     
                           {
                             follower.name !== this.props.loggedInUser.name && (
@@ -210,7 +220,7 @@ class ProfilePanel extends React.Component {
                   <Modal.Content scrolling>
                     <List divided verticalAlign='middle'>{
                       this.props.user.following.map((following) => {
-                        return <List.Item key={following.name} className='ff-modal-listitem'><Image avatar src={following.prof_pic} /><List.Content className="follow">{following.name}</List.Content><List.Content className="small-button" floated="right">
+                        return <List.Item onClick={this.changeAndReset.bind(this, following.user_id)} key={following.name} className='ff-modal-listitem'><Image avatar src={following.prof_pic} /><List.Content className="follow">{following.name}</List.Content><List.Content className="small-button" floated="right">
                           {
                             following.name !== this.props.loggedInUser.name && ( 
                               this.state.iFollowInFollowing.includes(following.name)
