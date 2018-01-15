@@ -51,7 +51,6 @@ class App extends React.Component {
   }
 
   changeUser(userId) {
-    console.log('changing to user', userId);
     this.mountUser(userId, 'change');
   }
 
