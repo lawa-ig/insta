@@ -58,35 +58,6 @@ passport.use(new FacebookStrategy({
 },
   function (accessToken, refreshToken, profile, done) {
 
-    // for database
-
-
-    // for this to work, user id will have to be the same as facebook profile id. might need to add in a facebook_id field. don't see it in db
-    // db.query('SELECT * FROM users WHERE user_id = ?', profile.id, function (err, user) {
-    //   if (err) {
-    //     return done(err);
-    //   }
-    // user is what will be returned from the db. should only be one user rather than many rows
-    // hopefully, nomenclature is not confusing
-    //   if (user.length > 0) {
-    //     return done(null, user);
-    //   }
-    //   if (user.length === 0) {
-    //     var newUser = {
-    //       "id": profile.id,
-    //       "username": profile.displayName,
-            //  "photo": profile.photos[0].value
-    //     }
-    //     db.query('INSERT INTO users (user_id, name) values (?, ?)', [newUser.id, newUser.username], function(err, user) {
-    //       if (err) {
-    //         return done(err);
-    //       }
-    //       console.log('user inserted into db');
-    //       return done(null, newUser);
-    //     })
-    //   }
-    // });
-
 
     // for use with hardcoded data
     var user = findUser(profile.id);
@@ -112,10 +83,6 @@ passport.use(new FacebookStrategy({
   }));
 
 
-// passport provided methods to serialize and deserialize user info
-// this means every subsequent request will not contain user credentials
-
-// for use with hardcoded data
 passport.serializeUser(function (user, done) {
   console.log('getting to serialize user')
   done(null, user.id);
@@ -127,21 +94,7 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-// for use with db
 
-// passport.serializeUser(function (user, done) {
-//   console.log('getting to serialize user')
-//   done(null, user.user_id);
-// });
-
-// passport.deserializeUser(function (id, done) {
-//   db.query('SELECT * FROM users WHERE user.facebook_id = '+id, function(err, user) {
-//     return done(err, user[0]);
-//   });
-// });
-
-
-// setting up express server
 const app = express();
 
 app.use(bodyParser.json());
@@ -160,18 +113,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 //routes here
 
-// app.get('/logon', function (req, res) {
-//      console.log('request', req.body.params)
-//      res.json(req.body.params);
-//    });
 
 app.get('/login/facebook',
 
-  // will keep this in case we need to track request params later
-  // function (req, res) {
-  //   console.log('request', req.body.params)
-  //   res.json(req.body.params);
-  // });
+
   passport.authenticate('facebook', { scope: 'email' }), function (req, res) {
     console.log('connected');
     console.log('request', req);
@@ -195,48 +140,4 @@ app.get('/logout', function (req, res) {
   res.redirect('/'); // redirect to home page
 });
 
-// app.get('/profile',
-//   require('connect-ensure-login').ensureLoggedIn(), // failing here. will need to fix when connecting routes
 
-//   function (req, res) {
-//     console.log('here is request', req);
-//     res.render('profile', { username: req.user });
-//   });
-
-
-let port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Example app listening on ${port}!`));
-
-
-
-
-
-// this is for the facebook sdk stuff. probably won't be using it
-
-// /* <script>
-//   window.fbAsyncInit = function() {
-//     FB.init({
-//       appId: '{your-app-id}',
-//       cookie: true,
-//       xfbml: true,
-//       version: '{latest-api-version}'
-//     });
-
-//   FB.AppEvents.logPageView();
-
-//   };
-
-//   (function(d, s, id){
-//      var js, fjs = d.getElementsByTagName(s)[0];
-//      if (d.getElementById(id)) {return ;}
-//      js = d.createElement(s); js.id = id;
-//      js.src = "https://connect.facebook.net/en_US/sdk.js";
-//      fjs.parentNode.insertBefore(js, fjs);
-//    }(document, 'script', 'facebook-jssdk'));
-// </script>
-
-// app.get('/login/facebook/callback', 
-//  passport.authenticate('facebook', {
-//    successRedirect: '/home',
-//    failureRedirect : '/'
-//  }))
