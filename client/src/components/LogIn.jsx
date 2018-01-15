@@ -38,10 +38,6 @@ class LogIn extends React.Component {
                   placeholder='Email'
                   ref={(input) => { this.email = input }}
                 />
-                <input
-                  placeholder='Username'
-                  ref={(i) => { this.name = i }}
-                />
 
                 <Button color='instagram' onClick={(e) => {this.props.logIn(this.email)}} fluid size='large'>Login</Button>
               </Segment>

@@ -106,7 +106,7 @@ class App extends React.Component {
     })
       .then(function (response) {
         if (typeof response.data === 'string') {
-          alert('you need to sign up');
+          alert('Sorry new user, but you need to sign up for Insta-Lawa first!');
         }
       })
       .catch(function (error) {
