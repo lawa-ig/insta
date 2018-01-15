@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import config from '../../../server/config.js';
-import { Button, Form, Grid, Header, Image, Modal, Icon, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, List, Modal, Icon, Message, Segment } from 'semantic-ui-react'
 
 
 
@@ -45,12 +45,16 @@ class LogIn extends React.Component {
               </Segment>
             </Form>
             <Message>
-              <Modal trigger={<Button>Sign Up</Button>} closeIcon>
-              <Modal.Header>Welcome to Insta-Lawa: Just enter your info to sign up and then log in to see your profile</Modal.Header>
+              <Modal size="tiny" trigger={<Button>Sign Up</Button>} closeIcon>
+              <Modal.Header>Welcome to Insta-Lawa!</Modal.Header>
               <Modal.Content>
+                <Form>
+                <Segment stacked>
                 <input placeholder='Enter your email' ref={i => {this.newEmail = i }} />
                 <input placeholder='Enter your username' ref={i => {this.newUsername = i}} />
-                <Button onClick={e => {this.props.signUp([this.newEmail, this.newUsername]) }}>Let's get started</Button>
+              </Segment>
+                    <Button onClick={e => { this.props.signUp([this.newEmail, this.newUsername]) }}>Let's get started</Button>
+              </Form>
               </Modal.Content>
             </Modal>
             </Message>
